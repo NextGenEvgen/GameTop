@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView1" />
-
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"            
+            android:id="@+id/tLay"/>
+    </ScrollView>
 </LinearLayout>

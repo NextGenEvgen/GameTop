@@ -1,50 +1,36 @@
 ﻿using Android.App;
-using Android.OS;
-using Android.Support.V7.App;
-using Android.Runtime;
-using Android.Widget;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Java.Net;
 using Android.Graphics;
-using Java.IO;
-using Android.Graphics.Drawables;
-using Android.Util;
+using Android.OS;
+using Android.Runtime;
+using Android.Support.V7.App;
+using Android.Widget;
 using System.Net;
-using System.IO;
 namespace GameTop
 {
     [Activity(Label = "GameTop", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        //ImageButton button;
-
-        //int counter = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            // Set our view from the "main" layout resource
 
             SetContentView(Resource.Layout.activity_main);
-
-            FindViewById<ImageView>(Resource.Id.imageView1).SetImageBitmap(GetImageFromUrl("http://192.168.1.104:8080/Dark%20Souls.png"));
-            //image.SetImageBitmap(GetImageFromUrl("https://i.redd.it/lb9h2bfqnuh41.png"));
-            //Android.Net.Uri url = Android.Net.Uri.Parse("https://i.redd.it/lb9h2bfqnuh41.png");
-            //image.SetImageURI(url);
-
-            //ImageButton button = FindViewById<ImageButton>(Resource.Id.imageButton1);
-            //button.SetImageURI(Android.Net.Uri.Parse("https://zhitanska.com/wp-content/uploads/2019/01/rani-ki-vav-11.jpg"));
+            var layout = FindViewById<TableLayout>(Resource.Id.tLay);
+            ImageView image = new ImageView(this)
+            {
+                ScaleX = 0.5f,
+                ScaleY = 0.5f
+            };
+            image.SetImageBitmap(GetImageFromUrl("http://192.168.1.104:8080/Dark%20Souls.png"));
+            ImageView imageView = new ImageView(this)
+            {
+                ScaleX = 0.5f,
+                ScaleY = 0.5f
+            };
+            imageView.SetImageBitmap(GetImageFromUrl("http://192.168.1.104:8080/Dark%20Souls.png"));
+            layout.AddView(imageView);
+            layout.AddView(image);
         }
 
         private Bitmap GetImageFromUrl(string url)
