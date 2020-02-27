@@ -14,42 +14,24 @@ namespace GameTop
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-
             SetContentView(Resource.Layout.activity_main);
-            var layout = FindViewById<TableLayout>(Resource.Id.tLay);
-            ImageView image = new ImageView(this)
-            {
-                ScaleX = 0.5f,
-                ScaleY = 0.5f
-            };
-            image.SetImageBitmap(GetImageFromUrl("http://192.168.1.104:8080/Dark%20Souls.png"));
-            ImageView imageView = new ImageView(this)
-            {
-                ScaleX = 0.5f,
-                ScaleY = 0.5f
-            };
-            imageView.SetImageBitmap(GetImageFromUrl("http://192.168.1.104:8080/Dark%20Souls.png"));
-            layout.AddView(imageView);
+            var layout = FindViewById<GridLayout>(Resource.Id.grid);
+            layout.RowCount = 2;
+
+            ImageButton image = Helper.GetImageButton("Dark Souls", this);
+            ImageButton image1 = Helper.GetImageButton("Dota 2", this);
+            ImageButton image2 = Helper.GetImageButton("Overwatch", this);
+            image.Click += GoToOtherActivity;
+            image1.Click += GoToOtherActivity;
+            image2.Click += GoToOtherActivity;
             layout.AddView(image);
+            layout.AddView(image1);
+            layout.AddView(image2);
         }
 
-        private Bitmap GetImageFromUrl(string url)
+        private void GoToOtherActivity(object sender, System.EventArgs e)
         {
-            Bitmap image = null;
-            using (var webClient = new WebClient())
-            {
-                var bytes = webClient.DownloadData(url);
-                if (bytes != null && bytes.Length > 0)
-                {
-                    image = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
-                }
-            }
-            return image;
-        }
-
-        private void Button_Click(object sender, System.EventArgs e)
-        {
-            //button.SetImageURI()
+            StartActivity(typeof(GamePageActivity));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
