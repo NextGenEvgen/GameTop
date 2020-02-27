@@ -24,23 +24,14 @@ db.all(sql, [], (err, rows) => {
     rows.forEach((row) => {
       res += row.name + ',';
     });
-    console.log(res);
   });
 
 http.createServer(function(request, response){
-    //response.setHeader("UserId", 12);
     console.log("Url: " + request.url);
     console.log("Тип запроса: " + request.method);
     console.log("User-Agent: " + request.headers["user-agent"]);
     console.log("Все заголовки");
     console.log(request.headers);
-    
-
-    // console.log("намалевал");
-    // response.setHeader("Content-Type", "image/jpg");
-    // fs.readFile(filePath , (err, image) => {
-    //     response.end(image);
-    // });
 
     if (request.url == '/')
     {
@@ -50,8 +41,8 @@ http.createServer(function(request, response){
     }
     else {
         var filePath = request.url.substr(1);
+        filePath.replace("%20"," ");
         fs.createReadStream(filePath).pipe(response);
-        //response.end();
     }
 
 
