@@ -35,7 +35,6 @@ http.createServer(function(request, response){
 
     if (request.url == '/')
     {
-        response.write(res);
         console.log("ответил");
         response.end();
     }
@@ -44,6 +43,4 @@ http.createServer(function(request, response){
         filePath.replace("%20"," ");
         fs.createReadStream(filePath).pipe(response);
     }
-
-
-}).listen(22525);
+}).listen(25525);

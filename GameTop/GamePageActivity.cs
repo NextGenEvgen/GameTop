@@ -20,10 +20,10 @@ namespace GameTop
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_activity);
             
-            string name = Intent.GetStringExtra("name") ?? "send help";
-            var textView = FindViewById<TextView>(Resource.Id.gameName);
+            //string name = Intent.GetStringExtra("name") ?? "send help";
+            //var textView = FindViewById<TextView>(Resource.Id.gameName);
             
-            textView.Text = name;
+            //textView.Text = name;
         }
     }
 }
