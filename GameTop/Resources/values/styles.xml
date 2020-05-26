@@ -3,7 +3,13 @@
   <!-- Base application theme. -->
   <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
     <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimary">#5A8622</item>
+    <item name="colorPrimaryDark">#5A8622</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <style name="CustomTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <item name="colorPrimary">#5A8622</item>
     <item name="colorPrimaryDark">#5A8622</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>

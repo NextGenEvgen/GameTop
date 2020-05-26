@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace GameTop
 {
-    [Activity(Label = "GamePageActivity")]
+    [Activity(Label = "GamePageActivity", Theme = "@style/CustomTheme")]
     public class GamePageActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.game_activity);
+
+            var txt = FindViewById<TextView>(Resource.Id.txt);
+            string name = Intent.GetStringExtra("name");
+            txt.Text = name;
+            this.Title = name;            
+
+            var rating = FindViewById<RatingBar>(Resource.Id.rating);
+
+            //rating.OnRatingBarChangeListener = new
             
-            //string name = Intent.GetStringExtra("name") ?? "send help";
-            //var textView = FindViewById<TextView>(Resource.Id.gameName);
-            
-            //textView.Text = name;
+            //rating.NumStars = 10;
+            //rating.Rating = 7;
         }
+
     }
 }

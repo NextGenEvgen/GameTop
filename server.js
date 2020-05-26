@@ -16,14 +16,22 @@ let res = "";
 
 let sql = 'select Name name from Games';
 
-var array = []
+var dataToClient = {
+    'resolution': null,
+    'other': null
+  }
+var jsonObj = {
+    "WSCI_TYPE" : "WSCI_DATA",
+    "WSCI_DATA" : dataToClient
+  }
+  
 //Выполнение запроса
 db.all(sql, [], (err, rows) => {
     if (err) {
       throw err;
     }
     rows.forEach((row) => {
-      array.push(row.name)
+      res += row.name + ',';
     });
   });
 
@@ -34,11 +42,6 @@ db.all(sql, [], (err, rows) => {
     let name = request.query.name;
     fs.createReadStream(name).pipe(response);
   });
-  app.get("/getgameslist", function(request, response)
-  {
-    response.write(JSON.stringify(array));
-    response.end();
-  });
   app.get("/auth", function(request, response){
     let login = request.query.login;
     let pass = request.query.password;
@@ -48,16 +51,19 @@ db.all(sql, [], (err, rows) => {
       }
       if (row == undefined)
       {
-        response.write("forbidden");
+		jsonObj.WSCI_DATA['resolution']='forbidden';
+        response.send(JSON.stringify(jsonObj));
       }
       else {
-        response.write("allowed");
+		jsonObj.WSCI_DATA['resolution']='allowed';
+        response.send(JSON.stringify(jsonObj));
       }
       response.end();
       //return row;
     });    
   });
   app.get("/", function(request, response){
-      response.send("<h1>hello world</h1>");
+     jsonObj.WSCI_DATA['resolution']='hello world';
+     response.send(JSON.stringify(jsonObj));
   });
   app.listen(25525);
