@@ -2,6 +2,8 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Widget;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace GameTop
 {
@@ -38,6 +40,12 @@ namespace GameTop
             param.RowSpec = GridLayout.InvokeSpec(GridLayout.Undefined, 1f);
             param.ColumnSpec = GridLayout.InvokeSpec(GridLayout.Undefined, 1f);
             return param;
+        }
+
+        public static string ComputeHash(string source)
+        {
+            var hash = new SHA256CryptoServiceProvider().ComputeHash((ASCIIEncoding.ASCII.GetBytes(source)));
+            return ASCIIEncoding.ASCII.GetString(hash);
         }
     }
 }

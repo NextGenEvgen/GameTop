@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_margin="20px"
+        android:inputType="textEmailAddress"
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -30,4 +31,15 @@
         android:text="Войти"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/reg"        
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:text="Зарегистрироваться"
+        android:textSize="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50px"
+        android:textColor="#002f55"/>
 </LinearLayout>

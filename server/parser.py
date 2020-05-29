@@ -1,9 +1,11 @@
 import requests
 from lxml import etree
 import lxml.html
+import sys
 
 
 def parse(url):
+    result = []
     try:
         api = requests.get(url)
     except:
@@ -20,26 +22,40 @@ def parse(url):
             tree_news = lxml.html.document_fromstring(api_news.text)
             # заголовок новосто
             head = tree_news.xpath('//*[@id="post-item"]/div[5]/h1/text()')
+            
             # картинка за новостью (ссылка на нее) - чаще есть,
 			# чем нет - можно парсить только такие новости,
             # чтоб легче было перенести
-            # pic = tree_news.xpath('//*[@id="post-item"]/div[6]/figure[1]/a')[0].get('href')
+            #pic = tree_news.xpath('//*[@id="post-item"]/div[6]/figure[1]/a')[0].get('href')
             # тело новости, а вот тут и начинается грязь
             # внутри тега "p" много другие тегов
             # из-за этого не могу взять цельную новость
             # но если она без лишних тегов - то без проблем
             body = tree_news.xpath('//*[@id="post-item"]/div[6]/p/text()')
-            print(head[0])
+            #print(head)
+            #print(body)
+            #print(body)
             # print(pic)
-            for _x in body:
-                print(_x)
+            res = ""
+            res += head[0] + "'" + ", " + "'"
+            #res += pic + "'" + ", " + "'"
+            for _x in body:             
+            #     #print(_x)
+                 res += _x
+            result.append(res)        
+
         except:
-            print('???')
+            pass
+            #print('???')
+
+    return result
 
 
 def main():
     # взял сайта только анонсы игр
-    parse('https://www.playground.ru/news/announces')
+    print(parse('https://www.playground.ru/news/announces'))  
+    #print(type(parse('https://www.playground.ru/news/announces')))  
+    sys.stdout.flush()
     # parse("https://www.playground.ru/detroit_become_human/v_steam_poyavilas_stranitsa_i_demoversiya_detroit_become_human-721875")
 
 

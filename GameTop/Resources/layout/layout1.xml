@@ -1,0 +1,28 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="3dp"
+     android:id="@+id/revi">
+
+
+    <TextView
+                android:id="@+id/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        android:text="author"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+   <TextView
+       android:id="@+id/comments"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="comments"
+       android:textSize="14sp" />
+
+</LinearLayout>
