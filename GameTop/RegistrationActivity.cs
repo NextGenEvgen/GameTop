@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using System;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace GameTop
 {
     [Activity(Label = "Регистрация", Theme = "@android:style/Theme.Material.Light.DarkActionBar")]
     class RegistrationActivity : Activity
     {
+        Regex regex = new Regex(@"^[a-z0-9]{8,}$", RegexOptions.IgnoreCase);
         private EditText login, nickname, password, secondPassword;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,6 +34,11 @@ namespace GameTop
             if (password.Text != secondPassword.Text)
             {
                 Toast.MakeText(this, "Пароли не совпадают!", ToastLength.Short).Show();
+                return;
+            }
+            if (!regex.IsMatch(password.Text))
+            {
+                Toast.MakeText(this, "Неподходящий пароль! Пароль должен содержать не менее 8 символов латиницы или цифр!", ToastLength.Short).Show();
                 return;
             }
             using (WebClient wc = new WebClient())

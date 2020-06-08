@@ -16,8 +16,6 @@ let db = new sqlite3.Database('dataBase.db', (err) => {
 
 let res = "";
 
-//let sql = 'SELECT Games.name FROM Games,Genres,GenreGame WHERE Games.id = GenreGame.game_id and GenreGame.genre_id = Genres.id and Games.rating >= ? and Genres.name="?"';
-
 const express = require("express");
 const app = express();
 
@@ -29,7 +27,6 @@ app.get("/getgameslist", function (request, response) {
   var array = []
   let genre = request.query.genre;
   let rating = request.query.rating;
-  console.log(rating, genre);
   if (genre == "All") {
     db.all('SELECT DISTINCT Games.id FROM Games WHERE Games.rating >= ?', [rating], (err, rows) => {
       if (err) {
