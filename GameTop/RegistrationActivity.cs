@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace GameTop
 {
-    [Activity(Label = "Регистрация", Theme = "@android:style/Theme.Material.Light.DarkActionBar")]
+    [Activity(Label = "Регистрация", Theme = "@android:style/Theme.Material.Light.DarkActionBar")] //тест изменения
     class RegistrationActivity : Activity
     {
         private EditText login, nickname, password, secondPassword;
